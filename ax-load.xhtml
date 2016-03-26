@@ -1,0 +1,23 @@
+<?php
+
+define( 'AXPATH', dirname(__FILE__) . '/');
+
+if ( ! ( file_exists( AXPATH . 'config.php' ) ) )
+{
+	define( 'AXINC', 'ax-system/' );
+	
+	require_once( AXPATH . AXINC . 'load.xhtml' );
+	
+	$iGetServer = new ax( $iGetVars );
+	$iGetServer->iGetFix();
+	
+	require_once( AXPATH . AXINC . 'functions.xhtml');
+	
+	$subPath = $iGetServer->iGetHttp() . 'adm-panel/setup.php';
+	
+	if ( file_exists("adm-panel/setup.php"))
+	{
+		header('Location: '.$subPath);
+		exit;
+	}
+}
